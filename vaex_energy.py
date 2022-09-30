@@ -7,8 +7,8 @@ import time
 import vaex as ve
 
 
-df = ve.DataFrame()
-df_samp = ve.DataFrame()
+## df = ve.DataFrame()
+## df_samp = ve.DataFrame()
 def reset_env():
     df = ve.read_csv('df_drug.csv')
     df_samp = ve.read_csv('df_drug.csv')
@@ -137,8 +137,8 @@ def unique(df):
 
 # Input Output functions
 df = load_csv(path='../../Datasets/drugs.csv')
-df = load_json(path='../../Datasets/drugs.json')
-df = load_hdf(path='../../Datasets/drugs_vaex.hdf5')
+## df = load_json(path='../../Datasets/drugs.json')
+## df = load_hdf(path='../../Datasets/drugs_vaex.hdf5')
 
 def test_save_csv():
     save_csv(df, 'df_v.csv')

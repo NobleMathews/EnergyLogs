@@ -4,13 +4,18 @@ from pyJoules.energy_meter import measure_energy
 from pyJoules.handler.csv_handler import CSVHandler
 
 import time
+import pandas
 import dask.dataframe as pd
 
-df = pd.DataFrame()
-df_samp = pd.DataFrame()
+df = None
+df_samp = None 
 def reset_env():
-    df = pd.read_csv('df_drug.csv')
-    df_samp = pd.read_csv('df_drug.csv')
+    global df, df_samp
+    df = pandas.read_csv('df_drug.csv')
+    df_samp = pandas.read_csv('df_drug.csv')
+
+    df = pd.from_pandas(df)
+    df_samp = pd.from_pandas(df_samp)
 
 # I/O functions - READ
 def load_csv(path):
@@ -131,7 +136,7 @@ def unique(df):
 
 # Input output functions 
 df = load_csv(path='../../Datasets/drugs.csv')
-df = load_json(path='../../Datasets/drugs.json')
+## df = load_json(path='../../Datasets/drugs.json')
 #df = load_hdf(path='../../Datasets/drugs_dask.hdf', key='a')
 #
 def test_save_csv():

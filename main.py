@@ -5,7 +5,7 @@ from pyJoules.energy_meter import measure_energy
 from pyJoules.handler import EnergyHandler
 import psutil
 # import GPUtil
-import imp
+import importlib
 import os.path
 # from functools import wraps
 # import tracemalloc
@@ -37,10 +37,11 @@ test_sets = {}
 for lib in checks:
     name = lib+"_energy"
     try:
-        fp, path, desc = imp.find_module(name)
-        test_sets[name]=imp.load_module(name, fp,
-                                          path, desc)
-    except ImportError:
+        test_sets[name] = importlib.import_module(name)
+##        test_sets[name]=importlib.load_module(name, fp,
+##                                          path, desc)
+    except Exception as e:
+        print("here:", e)
         print ("module not found: " + name)
 
 process_pool = []

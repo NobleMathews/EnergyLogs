@@ -14,8 +14,8 @@ def reset_env():
     df = pandas.read_csv('df_drug.csv')
     df_samp = pandas.read_csv('df_drug.csv')
 
-    df = pd.from_pandas(df)
-    df_samp = pd.from_pandas(df_samp)
+    df = pd.from_pandas(df, npartitions=3)
+    df_samp = pd.from_pandas(df_samp, npartitions=3)
 
 # I/O functions - READ
 def load_csv(path):

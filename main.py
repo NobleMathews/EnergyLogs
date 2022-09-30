@@ -98,14 +98,14 @@ csv_handler = CSVHandler(f"output.csv")
 def reset_run(*args, **kwargs):
     kwargs['parent'].reset_env()   
     def inner(func):
-        func()         
+        return func()         
     return inner
 
-def decorated_method(func, *decorators):
+def decorated_method(func, module_name, *decorators):
     for d in reversed(decorators):
         for iteration in range(n_iterations):
             func = d(func)
-            process_pool.append(func)
+            process_pool.append()
         for w_it in range(warmup):
             undecorated_pool.append(func)
 
@@ -113,13 +113,13 @@ def decorated_method(func, *decorators):
 def build_pool(subjects):
     process_pool.clear()
     for subject in subjects:
+        print(subject)
         for name in dir(subject):
             method = getattr(subject, name)
             if callable(method) and name.startswith("test_"):
                 # Maybe just have one file with stuff we need printed instead
                 decorated_method(method,
                                 measure_energy(handler=csv_handler),
-                                reset_run(parent=subject)
                                 )
 
 if __name__ == '__main__':

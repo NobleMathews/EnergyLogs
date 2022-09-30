@@ -1,5 +1,7 @@
 __pycache__
 .idea
-df_v.csv
-df_v.json
-df.hdf5
+*.csv
+*.json
+*.hdf5
+*.h5
+*.hdf
